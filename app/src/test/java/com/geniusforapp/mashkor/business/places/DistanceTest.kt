@@ -30,6 +30,6 @@ private fun distanceRepository(): DistanceRepository =
     }
 
 private const val distanceFloat = 1f
-private var finalResult = (distanceFloat * 1.609344).roundToInt()
+private var finalResult = (distanceFloat * 0.001).roundToInt()
 private val locationOne = LatLng(0.0, 0.0)
 private val locationTwo = LatLng(0.0, 0.0)
