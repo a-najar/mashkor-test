@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    app:cardCornerRadius="5dp"
+    app:cardElevation="10dp"
+    app:cardUseCompatPadding="true">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/pickPin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pin"
+            app:layout_constraintBottom_toBottomOf="@id/descriptionPickup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/titlePickup" />
+
+        <TextView
+            android:id="@+id/titlePickup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="start|center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/pickPin"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Kuwait,KuwaitCity" />
+
+        <TextView
+            android:id="@+id/descriptionPickup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start|center"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/titlePickup"
+            app:layout_constraintTop_toBottomOf="@id/titlePickup"
+            tools:text="Salwa b6 , lane 5" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#B9EDEDED"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/titleDelivery"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/titleDelivery"
+            app:layout_constraintTop_toBottomOf="@id/descriptionPickup" />
+
+        <View
+            android:id="@+id/viewLink"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:background="@color/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@id/deliveryPin"
+            app:layout_constraintEnd_toEndOf="@id/pickPin"
+            app:layout_constraintStart_toStartOf="@id/pickPin"
+            app:layout_constraintTop_toBottomOf="@id/pickPin"
+            app:layout_constraintVertical_weight="1" />
+
+        <ImageView
+            android:id="@+id/deliveryPin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pin"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/descriptionDelivery"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/titleDelivery" />
+
+
+        <TextView
+            android:id="@+id/titleDelivery"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:gravity="start|center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@id/pickPin"
+            app:layout_constraintTop_toBottomOf="@id/descriptionPickup"
+            tools:text="Kuwait,KuwaitCity" />
+
+        <TextView
+            android:id="@+id/descriptionDelivery"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start|center"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/titleDelivery"
+            app:layout_constraintTop_toBottomOf="@id/titleDelivery"
+            tools:text="Salwa b6 , lane 5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

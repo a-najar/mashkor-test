@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Mashkor</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="action_choose_pickup">Choose pickup %s</string>
+    <string name="action_choose_delivery">Choose delivery %s</string>
+    <string name="action_confirm_pickup">Confirm Pickup</string>
+    <string name="text_you">You</string>
+    <string name="title_activity_locations_selector">Choose Pickup</string>
+    <string name="action_select_location">Select Pickup and delivery locations</string>
+    <string name="action_confirm">Confirm</string>
+    <string name="text_distance">Distance Between Pickup and Delivery is %s KM</string>
+    <string name="text_moving_title">Select your moving way</string>
+    <string name="dialog_message_permission">Please grant location permissions! by granting the location permissions your location will not be shared it\'s only for application usage</string>
+    <string name="dialog_title_permission">Permissions</string>
+    <string name="dialog_action_grant">Grant</string>
+    <string name="dialog_action_cancel">Cancel</string>
+    <string name="dialog_title_network">Network</string>
+    <string name="dialog_message_network">Please check your conictivity to continue using the app!</string>
+    <string name="dialog_action_network">Check network settings</string>
+</resources>
