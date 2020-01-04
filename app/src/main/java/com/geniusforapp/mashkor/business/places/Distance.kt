@@ -18,7 +18,7 @@ class Distance(private val distanceRepository: DistanceRepository = DistanceRepo
     }
 
     private fun Float.convertToKm(): Int {
-        return (this / 1000).roundToInt()
+        return (this * 0.001).roundToInt()
     }
 }
 
