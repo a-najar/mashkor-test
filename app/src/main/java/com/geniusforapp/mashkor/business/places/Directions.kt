@@ -20,7 +20,8 @@ class Directions(private val directionsRepository: DirectionsRepository = Direct
             locationResult.getOrigin(),
             locationResult.getDestination(),
             locationResult.getMovingMode()
-        ).map { it.routes.orEmpty() }
+        )
+            .map { it.routes.orEmpty() }
             .map { it.firstOrNull() }
             .map { it.overviewPolyline }
             .map { it.points }

@@ -2,8 +2,10 @@
 <resources>
 
     <declare-styleable name="LocationView">
-        <attr name="title" format="string"/>
-        <attr name="description" format="string"/>
+        <attr name="title" format="string" />
+        <attr name="description" format="string" />
+        <attr name="isViewEnabled" format="boolean" />
+        <attr name="startIcon" format="reference" />
     </declare-styleable>
 
 </resources>

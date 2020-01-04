@@ -28,6 +28,7 @@
         android:textAllCaps="false"
         android:textColor="@android:color/black"
         android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/actionGo"
         app:layout_constraintStart_toEndOf="@id/pickPin"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Kuwait,KuwaitCity" />
@@ -39,6 +40,7 @@
         android:gravity="start|center"
         android:textAllCaps="false"
         android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@id/actionGo"
         app:layout_constraintStart_toStartOf="@id/textTitle"
         app:layout_constraintTop_toBottomOf="@id/textTitle"
         tools:text="Salwa b6 , lane 5" />

@@ -36,4 +36,8 @@ class PlacesSelector @JvmOverloads constructor(
         titleDelivery.text = title
         descriptionDelivery.text = description
     }
+
+    fun withDistance(text: String) {
+        textDistance.text = text
+    }
 }

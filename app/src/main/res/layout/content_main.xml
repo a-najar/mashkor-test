@@ -43,4 +43,7 @@
         app:cornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+
+    <include layout="@layout/layout_loading" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

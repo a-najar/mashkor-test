@@ -29,3 +29,7 @@ fun hideViews(vararg view: View) {
 fun showViews(vararg view: View) {
     view.forEach { it.visible() }
 }
+
+fun View.enabled() {
+    isEnabled = true
+}

@@ -12,10 +12,12 @@ import androidx.lifecycle.Observer
 import com.geniusforapp.mashkor.R
 import com.geniusforapp.mashkor.data.models.google.directions.LocationResult
 import com.geniusforapp.mashkor.data.models.google.directions.Mode
+import com.geniusforapp.mashkor.ui.ktx.enabled
 import com.geniusforapp.mashkor.ui.ktx.visible
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
+import kotlinx.android.synthetic.main.activity_locations_selector.*
 import kotlinx.android.synthetic.main.content_locations_selector.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
@@ -42,8 +44,16 @@ class LocationsSelectorActivity : AppCompatActivity() {
         initObserver()
         initDistanceObserver()
         addViewListeners()
+        addConfirmObserver()
 
+    }
 
+    private fun addConfirmObserver() {
+        viewModel.confirm.observe(this, Observer {
+            val resultIntent = Intent().putExtra(LocationResult::class.java.simpleName, it)
+            setResult(Activity.RESULT_OK, resultIntent)
+            onBackPressed()
+        })
     }
 
     private fun initObserver() {
@@ -71,6 +81,7 @@ class LocationsSelectorActivity : AppCompatActivity() {
         locationResult.origin?.let {
             pickupLocationView.withTextTitle(it.name)
             pickupLocationView.withTextDescription(it.address)
+            deliveryLocationView.enabled()
         }
     }
 
@@ -78,7 +89,9 @@ class LocationsSelectorActivity : AppCompatActivity() {
         locationResult.destination?.let {
             deliveryLocationView.withTextTitle(it.name)
             deliveryLocationView.withTextDescription(it.address)
+            actionConfirm.enabled()
         }
+
     }
 
 
@@ -93,11 +106,7 @@ class LocationsSelectorActivity : AppCompatActivity() {
     }
 
     fun onConfirm(view: View) {
-        setResult(
-            Activity.RESULT_OK,
-            Intent().putExtra(LocationResult::class.java.simpleName, viewModel.confirm())
-        )
-        onBackPressed()
+        viewModel.confirm()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -120,5 +129,7 @@ class LocationsSelectorActivity : AppCompatActivity() {
     }
 
 }
+
+
 
 

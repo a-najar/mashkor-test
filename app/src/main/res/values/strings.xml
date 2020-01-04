@@ -5,7 +5,7 @@
     <string name="action_choose_delivery">Choose delivery %s</string>
     <string name="action_confirm_pickup">Confirm Pickup</string>
     <string name="text_you">You</string>
-    <string name="title_activity_locations_selector">Choose Pickup</string>
+    <string name="title_activity_locations_selector">Select Locations</string>
     <string name="action_select_location">Select Pickup and delivery locations</string>
     <string name="action_confirm">Confirm</string>
     <string name="text_distance">Distance Between Pickup and Delivery is %s KM</string>
@@ -15,6 +15,11 @@
     <string name="dialog_action_grant">Grant</string>
     <string name="dialog_action_cancel">Cancel</string>
     <string name="dialog_title_network">Network</string>
-    <string name="dialog_message_network">Please check your conictivity to continue using the app!</string>
+    <string name="dialog_message_network">Please check your connectivity to continue using the app!</string>
     <string name="dialog_action_network">Check network settings</string>
+    <string name="text_chip_walking">Walking</string>
+    <string name="text_chip_bus">Bus</string>
+    <string name="text_chip_train">Train</string>
+    <string name="text_chip_car">Car</string>
+    <string name="text_km">%sKM</string>
 </resources>

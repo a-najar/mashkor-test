@@ -14,7 +14,8 @@ import kotlinx.android.parcel.Parcelize
 class LocationResult(
     var origin: Place? = null,
     var destination: Place? = null,
-    var mode: Mode? = null
+    var mode: Mode? = null,
+    var distance: Int? = null
 ) : Parcelable {
 
     fun getOrigin(): String =

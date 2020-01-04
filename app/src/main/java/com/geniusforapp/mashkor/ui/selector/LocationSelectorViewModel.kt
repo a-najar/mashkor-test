@@ -16,16 +16,17 @@ import io.reactivex.disposables.CompositeDisposable
  * Copyrights (c) 2020-01-03 Created By Ahmad Najar
  **/
 class LocationSelectorViewModel(private val distanceUseCase: Distance = Distance()) : ViewModel() {
-    private val locationResult: LocationResult =
-        LocationResult()
+    private val locationResult: LocationResult = LocationResult()
 
     private val compositeDisposable = CompositeDisposable()
 
     private val _locations: MutableLiveData<LocationResult> = MutableLiveData()
     private val _distance: MutableLiveData<Int> = MutableLiveData()
+    private val _confirm: MutableLiveData<LocationResult> = MutableLiveData()
 
     val locations: LiveData<LocationResult> = _locations
     val distance: LiveData<Int> = _distance
+    val confirm: LiveData<LocationResult> = _confirm
 
     fun updateOrigin(place: Place) {
         locationResult.origin = place
@@ -33,9 +34,11 @@ class LocationSelectorViewModel(private val distanceUseCase: Distance = Distance
     }
 
     fun updateDestination(place: Place) {
-        locationResult.destination = place
-        _locations.postValue(locationResult)
-        calculateDistance()
+        locationResult.origin?.let {
+            locationResult.destination = place
+            _locations.postValue(locationResult)
+            calculateDistance()
+        }
     }
 
     fun updateMode(mode: Mode) {
@@ -43,13 +46,16 @@ class LocationSelectorViewModel(private val distanceUseCase: Distance = Distance
         _locations.postValue(locationResult)
     }
 
-    fun confirm(): LocationResult {
-        return locationResult
+    fun confirm() {
+        if (locationResult.origin == null) return
+        if (locationResult.destination == null) return
+        _confirm.postValue(locationResult)
     }
 
     private fun calculateDistance() {
         distanceUseCase(locationResult.origin?.latLng!!, locationResult.destination?.latLng!!)
             .withThreading()
+            .doOnSuccess { locationResult.distance = it }
             .subscribe(_distance::postValue, Logger::error)
             .also { compositeDisposable.add(it) }
     }

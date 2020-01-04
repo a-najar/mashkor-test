@@ -25,9 +25,10 @@ class MainViewModel(
 
     var loading: MutableLiveData<Boolean> = MutableLiveData()
     val currentLiveData: LiveData<Place> = MutableLiveData<Place>().apply {
-        loading.postValue(true)
         currentPlaceLocationUseCase()
             .withThreading()
+            .doOnSubscribe { loading.postValue(true) }
+            .doOnSuccess { loading.postValue(false) }
             .subscribe(::postValue, Throwable::printStackTrace)
             .also { compositeDisposable.add(it) }
 
@@ -39,6 +40,8 @@ class MainViewModel(
         loading.postValue(true)
         directionsUseCase(locationResult)
             .withThreading()
+            .doOnSubscribe { loading.postValue(true) }
+            .doOnSuccess { loading.postValue(false) }
             .subscribe(updateSelectedLocation::postValue, Logger::error)
             .also { compositeDisposable.add(it) }
     }

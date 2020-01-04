@@ -9,10 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.geniusforapp.mashkor.R
-import com.geniusforapp.mashkor.ui.ktx.addMarker
-import com.geniusforapp.mashkor.ui.ktx.generateTextMarker
-import com.geniusforapp.mashkor.ui.ktx.initGoogleMap
-import com.geniusforapp.mashkor.ui.ktx.visible
+import com.geniusforapp.mashkor.ui.ktx.*
 import com.geniusforapp.mashkor.ui.selector.LocationsSelectorActivity
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -20,6 +17,7 @@ import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.maps.android.PolyUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.layout_loading.*
 
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -37,7 +35,16 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         initGoogleMap(this)
-        addRouteObserver()
+        initActions()
+    }
+
+    private fun addLoadingObserver() {
+        mainViewModel.loading.observe(this, Observer {
+            if (it) loaderView.visible() else loaderView.gone()
+        })
+    }
+
+    private fun initActions() {
         placeSelector.setOnClickListener {
             startActivityForResult(LocationsSelectorActivity.getIntent(this), SELECT_LOCATION)
         }
@@ -54,6 +61,13 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 placeSelector.updateDeliveryLocation(
                     locationResult.destination?.name,
                     locationResult.destination?.address
+                )
+
+                placeSelector.withDistance(
+                    getString(
+                        R.string.text_km,
+                        it.locationResult.distance.toString()
+                    )
                 )
 
                 googleMap.addMarker(
@@ -91,6 +105,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         googleMap = listinerGoogleMap
         googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style))
         addCurrentPlaceObserver()
+        addRouteObserver()
+        addLoadingObserver()
     }
 
 
